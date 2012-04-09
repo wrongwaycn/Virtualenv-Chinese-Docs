@@ -1,0 +1,589 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Changes &amp; News &mdash; virtualenv v1.7.1.2.post1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.7.1.2.post1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="virtualenv v1.7.1.2.post1 documentation" href="index.html" />
+    <link rel="prev" title="virtualenv" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="virtualenv"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">virtualenv v1.7.1.2.post1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="changes-news">
+<h1>Changes &amp; News<a class="headerlink" href="#changes-news" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Python bugfix releases 2.6.8, 2.7.3, 3.1.5 and 3.2.3 include a change that
+will cause &#8220;import random&#8221; to fail with &#8220;cannot import name urandom&#8221; on any
+virtualenv created on a Unix host with an earlier release of Python
+2.6/2.7/3.1/3.2, if the underlying system Python is upgraded. This is due to
+the fact that a virtualenv uses the system Python&#8217;s standard library but
+contains its own copy of the Python interpreter, so an upgrade to the system
+Python results in a mismatch between the version of the Python interpreter
+and the version of the standard library. It can be fixed by removing
+<tt class="docutils literal"><span class="pre">$ENV/bin/python</span></tt> and re-running virtualenv on the same target directory
+with the upgraded Python.</p>
+</div>
+<div class="section" id="master-unreleased">
+<h2>master (unreleased)<a class="headerlink" href="#master-unreleased" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix activate.fish on OS X. Fixes #8. Thanks David Schoonover.</li>
+<li>Create a virtualenv-x.x script with the Python version when installing, so
+virtualenv for multiple Python versions can be installed to the same
+script location. Thanks Miki Tebeka.</li>
+<li>Restored ability to create a virtualenv with a path longer than 78
+characters, without breaking creation of virtualenvs with non-ASCII paths.
+Thanks, Bradley Ayers.</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2>1.7.1.2 (2012-02-17)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed minor issue in <cite>&#8211;relocatable</cite>. Thanks, Cap Petschulat.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>1.7.1.1 (2012-02-16)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Bumped the version string in <tt class="docutils literal"><span class="pre">virtualenv.py</span></tt> up, too.</li>
+<li>Fixed rST rendering bug of long description.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1.7.1 (2012-02-16)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Update embedded pip to version 1.1.</li>
+<li>Fix <cite>&#8211;relocatable</cite> under Python 3. Thanks Doug Hellmann.</li>
+<li>Added environ PATH modification to activate_this.py. Thanks Doug
+Napoleone. Fixes #14.</li>
+<li>Support creating virtualenvs directly from a Python build directory on
+Windows. Thanks CBWhiz. Fixes #139.</li>
+<li>Use non-recursive symlinks to fix things up for posix_local install
+scheme. Thanks michr.</li>
+<li>Made activate script available for use with msys and cygwin on Windows.
+Thanks Greg Haskins, Cliff Xuan, Jonathan Griffin and Doug Napoleone.
+Fixes #176.</li>
+<li>Fixed creation of virtualenvs on Windows when Python is not installed for
+all users. Thanks Anatoly Techtonik for report and patch and Doug
+Napoleone for testing and confirmation. Fixes #87.</li>
+<li>Fixed creation of virtualenvs using -p in installs where some modules
+that ought to be in the standard library (e.g. <cite>readline</cite>) are actually
+installed in <cite>site-packages</cite> next to <cite>virtualenv.py</cite>. Thanks Greg Haskins
+for report and fix. Fixes #167.</li>
+<li>Added activation script for Powershell (signed by Jannis Leidel). Many
+thanks to Jason R. Coombs.</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>1.7 (2011-11-30)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Gave user-provided <tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> priority over default dirs for
+finding setuptools/distribute (it already had priority for finding pip).
+Thanks Ethan Jucovy.</li>
+<li>Updated embedded Distribute release to 0.6.24. Thanks Alex Gronholm.</li>
+<li>Made <tt class="docutils literal"><span class="pre">--no-site-packages</span></tt> behavior the default behavior.  The
+<tt class="docutils literal"><span class="pre">--no-site-packages</span></tt> flag is still permitted, but displays a warning when
+used. Thanks Chris McDonough.</li>
+<li>New flag: <tt class="docutils literal"><span class="pre">--system-site-packages</span></tt>; this flag should be passed to get the
+previous default global-site-package-including behavior back.</li>
+<li>Added ability to set command options as environment variables and options
+in a <tt class="docutils literal"><span class="pre">virtualenv.ini</span></tt> file.</li>
+<li>Fixed various encoding related issues with paths. Thanks Gunnlaugur Thor Briem.</li>
+<li>Made <tt class="docutils literal"><span class="pre">virtualenv.py</span></tt> script executable.</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>1.6.4 (2011-07-21)<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Restored ability to run on Python 2.4, too.</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>1.6.3 (2011-07-16)<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Restored ability to run on Python &lt; 2.7.</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>1.6.2 (2011-07-16)<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated embedded distribute release to 0.6.19.</li>
+<li>Updated embedded pip release to 1.0.2.</li>
+<li>Fixed #141 - Be smarter about finding pkg_resources when using the
+non-default Python intepreter (by using the <tt class="docutils literal"><span class="pre">-p</span></tt> option).</li>
+<li>Fixed #112 - Fixed path in docs.</li>
+<li>Fixed #109 - Corrected doctests of a Logger method.</li>
+<li>Fixed #118 - Fixed creating virtualenvs on platforms that use the
+&#8220;posix_local&#8221; install scheme, such as Ubuntu with Python 2.7.</li>
+<li>Add missing library to Python 3 virtualenvs (<tt class="docutils literal"><span class="pre">_dummy_thread</span></tt>).</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>1.6.1 (2011-04-30)<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Start to use git-flow.</li>
+<li>Added support for PyPy 1.5</li>
+<li>Fixed #121 &#8211; added sanity-checking of the -p argument. Thanks Paul Nasrat.</li>
+<li>Added progress meter for pip installation as well as setuptools. Thanks Ethan
+Jucovy.</li>
+<li>Added &#8211;never-download and &#8211;search-dir options. Thanks Ethan Jucovy.</li>
+</ul>
+</div>
+<div class="section" id="id9">
+<h2>1.6<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added Python 3 support! Huge thanks to Vinay Sajip and Vitaly Babiy.</li>
+<li>Fixed creation of virtualenvs on Mac OS X when standard library modules
+(readline) are installed outside the standard library.</li>
+<li>Updated bundled pip to 1.0.</li>
+</ul>
+</div>
+<div class="section" id="id10">
+<h2>1.5.2<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Moved main repository to Github: <a class="reference external" href="https://github.com/pypa/virtualenv">https://github.com/pypa/virtualenv</a></li>
+<li>Transferred primary maintenance from Ian to Jannis Leidel, Carl Meyer and Brian Rosner</li>
+<li>Fixed a few more pypy related bugs.</li>
+<li>Updated bundled pip to 0.8.2.</li>
+<li>Handed project over to new team of maintainers.</li>
+<li>Moved virtualenv to Github at <a class="reference external" href="https://github.com/pypa/virtualenv">https://github.com/pypa/virtualenv</a></li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h2>1.5.1<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added <tt class="docutils literal"><span class="pre">_weakrefset</span></tt> requirement for Python 2.7.1.</li>
+<li>Fixed Windows regression in 1.5</li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h2>1.5<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.8.1.</li>
+<li>Add support for PyPy.</li>
+<li>Uses a proper temporary dir when installing environment requirements.</li>
+<li>Add <tt class="docutils literal"><span class="pre">--prompt</span></tt> option to be able to override the default prompt prefix.</li>
+<li>Fix an issue with <tt class="docutils literal"><span class="pre">--relocatable</span></tt> on Windows.</li>
+<li>Fix issue with installing the wrong version of distribute.</li>
+<li>Add fish and csh activate scripts.</li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h2>1.4.9<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.7.2</li>
+</ul>
+</div>
+<div class="section" id="id14">
+<h2>1.4.8<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix for Mac OS X Framework builds that use
+<tt class="docutils literal"><span class="pre">--universal-archs=intel</span></tt></li>
+<li>Fix <tt class="docutils literal"><span class="pre">activate_this.py</span></tt> on Windows.</li>
+<li>Allow <tt class="docutils literal"><span class="pre">$PYTHONHOME</span></tt> to be set, so long as you use <tt class="docutils literal"><span class="pre">source</span>
+<span class="pre">bin/activate</span></tt> it will get unset; if you leave it set and do not
+activate the environment it will still break the environment.</li>
+<li>Include pip 0.7.1</li>
+</ul>
+</div>
+<div class="section" id="id15">
+<h2>1.4.7<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.7</li>
+</ul>
+</div>
+<div class="section" id="id16">
+<h2>1.4.6<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Allow <tt class="docutils literal"><span class="pre">activate.sh</span></tt> to skip updating the prompt (by setting
+<tt class="docutils literal"><span class="pre">$VIRTUAL_ENV_DISABLE_PROMPT</span></tt>).</li>
+</ul>
+</div>
+<div class="section" id="id17">
+<h2>1.4.5<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.6.3</li>
+<li>Fix <tt class="docutils literal"><span class="pre">activate.bat</span></tt> and <tt class="docutils literal"><span class="pre">deactivate.bat</span></tt> under Windows when
+<tt class="docutils literal"><span class="pre">PATH</span></tt> contained a parenthesis</li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h2>1.4.4<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.6.2 and Distribute 0.6.10</li>
+<li>Create the <tt class="docutils literal"><span class="pre">virtualenv</span></tt> script even when Setuptools isn&#8217;t
+installed</li>
+<li>Fix problem with <tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--relocate</span></tt> when <tt class="docutils literal"><span class="pre">bin/</span></tt> has
+subdirectories (e.g., <tt class="docutils literal"><span class="pre">bin/.svn/</span></tt>); from Alan Franzoni.</li>
+<li>If you set <tt class="docutils literal"><span class="pre">$VIRTUALENV_USE_DISTRIBUTE</span></tt> then virtualenv will use
+Distribute by default (so you don&#8217;t have to remember to use
+<tt class="docutils literal"><span class="pre">--distribute</span></tt>).</li>
+</ul>
+</div>
+<div class="section" id="id19">
+<h2>1.4.3<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.6.1</li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h2>1.4.2<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix pip installation on Windows</li>
+<li>Fix use of stand-alone <tt class="docutils literal"><span class="pre">virtualenv.py</span></tt> (and boot scripts)</li>
+<li>Exclude ~/.local (user site-packages) from environments when using
+<tt class="docutils literal"><span class="pre">--no-site-packages</span></tt></li>
+</ul>
+</div>
+<div class="section" id="id21">
+<h2>1.4.1<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Include pip 0.6</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2>1.4<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated setuptools to 0.6c11</li>
+<li>Added the &#8211;distribute option</li>
+<li>Fixed packaging problem of support-files</li>
+</ul>
+</div>
+<div class="section" id="id23">
+<h2>1.3.4<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Virtualenv now copies the actual embedded Python binary on
+Mac OS X to fix a hang on Snow Leopard (10.6).</li>
+<li>Fail more gracefully on Windows when <tt class="docutils literal"><span class="pre">win32api</span></tt> is not installed.</li>
+<li>Fix site-packages taking precedent over Jython&#8217;s <tt class="docutils literal"><span class="pre">__classpath__</span></tt>
+and also specially handle the new <tt class="docutils literal"><span class="pre">__pyclasspath__</span></tt> entry in
+<tt class="docutils literal"><span class="pre">sys.path</span></tt>.</li>
+<li>Now copies Jython&#8217;s <tt class="docutils literal"><span class="pre">registry</span></tt> file to the virtualenv if it exists.</li>
+<li>Better find libraries when compiling extensions on Windows.</li>
+<li>Create <tt class="docutils literal"><span class="pre">Scripts\pythonw.exe</span></tt> on Windows.</li>
+<li>Added support for the Debian/Ubuntu
+<tt class="docutils literal"><span class="pre">/usr/lib/pythonX.Y/dist-packages</span></tt> directory.</li>
+<li>Set <tt class="docutils literal"><span class="pre">distutils.sysconfig.get_config_vars()['LIBDIR']</span></tt> (based on
+<tt class="docutils literal"><span class="pre">sys.real_prefix</span></tt>) which is reported to help building on Windows.</li>
+<li>Make <tt class="docutils literal"><span class="pre">deactivate</span></tt> work on ksh</li>
+<li>Fixes for <tt class="docutils literal"><span class="pre">--python</span></tt>: make it work with <tt class="docutils literal"><span class="pre">--relocatable</span></tt> and the
+symlink created to the exact Python version.</li>
+</ul>
+</div>
+<div class="section" id="id24">
+<h2>1.3.3<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use Windows newlines in <tt class="docutils literal"><span class="pre">activate.bat</span></tt>, which has been reported to help
+when using non-ASCII directory names.</li>
+<li>Fixed compatibility with Jython 2.5b1.</li>
+<li>Added a function <tt class="docutils literal"><span class="pre">virtualenv.install_python</span></tt> for more fine-grained
+access to what <tt class="docutils literal"><span class="pre">virtualenv.create_environment</span></tt> does.</li>
+<li>Fix <a class="reference external" href="https://bugs.launchpad.net/virtualenv/+bug/241581">a problem</a>
+with Windows and paths that contain spaces.</li>
+<li>If <tt class="docutils literal"><span class="pre">/path/to/env/.pydistutils.cfg</span></tt> exists (or
+<tt class="docutils literal"><span class="pre">/path/to/env/pydistutils.cfg</span></tt> on Windows systems) then ignore
+<tt class="docutils literal"><span class="pre">~/.pydistutils.cfg</span></tt> and use that other file instead.</li>
+<li>Fix ` a problem
+&lt;<a class="reference external" href="https://bugs.launchpad.net/virtualenv/+bug/340050">https://bugs.launchpad.net/virtualenv/+bug/340050</a>&gt;`_ picking up
+some <tt class="docutils literal"><span class="pre">.so</span></tt> libraries in <tt class="docutils literal"><span class="pre">/usr/local</span></tt>.</li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>1.3.2<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remove the <tt class="docutils literal"><span class="pre">[install]</span> <span class="pre">prefix</span> <span class="pre">=</span> <span class="pre">...</span></tt> setting from the virtualenv
+<tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> &#8211; this has been causing problems for a lot of
+people, in rather obscure ways.</li>
+<li>If you use a <a class="reference external" href="./index.html#boot-script">boot script</a> it will attempt to import <tt class="docutils literal"><span class="pre">virtualenv</span></tt>
+and find a pre-downloaded Setuptools egg using that.</li>
+<li>Added platform-specific paths, like <tt class="docutils literal"><span class="pre">/usr/lib/pythonX.Y/plat-linux2</span></tt></li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h2>1.3.1<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Real Python 2.6 compatibility.  Backported the Python 2.6 updates to
+<tt class="docutils literal"><span class="pre">site.py</span></tt>, including <a class="reference external" href="http://docs.python.org/dev/whatsnew/2.6.html#pep-370-per-user-site-packages-directory">user directories</a>
+(this means older versions of Python will support user directories,
+whether intended or not).</li>
+<li>Always set <tt class="docutils literal"><span class="pre">[install]</span> <span class="pre">prefix</span></tt> in <tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> &#8211; previously
+on some platforms where a system-wide <tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> was present
+with a <tt class="docutils literal"><span class="pre">prefix</span></tt> setting, packages would be installed globally
+(usually in <tt class="docutils literal"><span class="pre">/usr/local/lib/pythonX.Y/site-packages</span></tt>).</li>
+<li>Sometimes Cygwin seems to leave <tt class="docutils literal"><span class="pre">.exe</span></tt> off <tt class="docutils literal"><span class="pre">sys.executable</span></tt>; a
+workaround is added.</li>
+<li>Fix <tt class="docutils literal"><span class="pre">--python</span></tt> option.</li>
+<li>Fixed handling of Jython environments that use a
+jython-complete.jar.</li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h2>1.3<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Update to Setuptools 0.6c9</li>
+<li>Added an option <tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--relocatable</span> <span class="pre">EXISTING_ENV</span></tt>, which
+will make an existing environment &#8220;relocatable&#8221; &#8211; the paths will
+not be absolute in scripts, <tt class="docutils literal"><span class="pre">.egg-info</span></tt> and <tt class="docutils literal"><span class="pre">.pth</span></tt> files.  This
+may assist in building environments that can be moved and copied.
+You have to run this <em>after</em> any new packages installed.</li>
+<li>Added <tt class="docutils literal"><span class="pre">bin/activate_this.py</span></tt>, a file you can use like
+<tt class="docutils literal"><span class="pre">execfile(&quot;path_to/activate_this.py&quot;,</span>
+<span class="pre">dict(__file__=&quot;path_to/activate_this.py&quot;))</span></tt> &#8211; this will activate
+the environment in place, similar to what <a class="reference external" href="http://code.google.com/p/modwsgi/wiki/VirtualEnvironments">the mod_wsgi example
+does</a>.</li>
+<li>For Mac framework builds of Python, the site-packages directory
+<tt class="docutils literal"><span class="pre">/Library/Python/X.Y/site-packages</span></tt> is added to <tt class="docutils literal"><span class="pre">sys.path</span></tt>, from
+Andrea Rech.</li>
+<li>Some platform-specific modules in Macs are added to the path now
+(<tt class="docutils literal"><span class="pre">plat-darwin/</span></tt>, <tt class="docutils literal"><span class="pre">plat-mac/</span></tt>, <tt class="docutils literal"><span class="pre">plat-mac/lib-scriptpackages</span></tt>),
+from Andrea Rech.</li>
+<li>Fixed a small Bashism in the <tt class="docutils literal"><span class="pre">bin/activate</span></tt> shell script.</li>
+<li>Added <tt class="docutils literal"><span class="pre">__future__</span></tt> to the list of required modules, for Python
+2.3.  You&#8217;ll still need to backport your own <tt class="docutils literal"><span class="pre">subprocess</span></tt> module.</li>
+<li>Fixed the <tt class="docutils literal"><span class="pre">__classpath__</span></tt> entry in Jython&#8217;s <tt class="docutils literal"><span class="pre">sys.path</span></tt> taking
+precedent over virtualenv&#8217;s libs.</li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h2>1.2<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added a <tt class="docutils literal"><span class="pre">--python</span></tt> option to select the Python interpreter.</li>
+<li>Add <tt class="docutils literal"><span class="pre">warnings</span></tt> to the modules copied over, for Python 2.6 support.</li>
+<li>Add <tt class="docutils literal"><span class="pre">sets</span></tt> to the module copied over for Python 2.3 (though Python
+2.3 still probably doesn&#8217;t work).</li>
+</ul>
+</div>
+<div class="section" id="id29">
+<h2>1.1.1<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added support for Jython 2.5.</li>
+</ul>
+</div>
+<div class="section" id="id30">
+<h2>1.1<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added support for Python 2.6.</li>
+<li>Fix a problem with missing <tt class="docutils literal"><span class="pre">DLLs/zlib.pyd</span></tt> on Windows.  Create</li>
+<li><tt class="docutils literal"><span class="pre">bin/python</span></tt> (or <tt class="docutils literal"><span class="pre">bin/python.exe</span></tt>) even when you run virtualenv
+with an interpreter named, e.g., <tt class="docutils literal"><span class="pre">python2.4</span></tt></li>
+<li>Fix MacPorts Python</li>
+<li>Added &#8211;unzip-setuptools option</li>
+<li>Update to Setuptools 0.6c8</li>
+<li>If the current directory is not writable, run ez_setup.py in <tt class="docutils literal"><span class="pre">/tmp</span></tt></li>
+<li>Copy or symlink over the <tt class="docutils literal"><span class="pre">include</span></tt> directory so that packages will
+more consistently compile.</li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h2>1.0<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix build on systems that use <tt class="docutils literal"><span class="pre">/usr/lib64</span></tt>, distinct from
+<tt class="docutils literal"><span class="pre">/usr/lib</span></tt> (specifically CentOS x64).</li>
+<li>Fixed bug in <tt class="docutils literal"><span class="pre">--clear</span></tt>.</li>
+<li>Fixed typos in <tt class="docutils literal"><span class="pre">deactivate.bat</span></tt>.</li>
+<li>Preserve <tt class="docutils literal"><span class="pre">$PYTHONPATH</span></tt> when calling subprocesses.</li>
+</ul>
+</div>
+<div class="section" id="id32">
+<h2>0.9.2<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix include dir copying on Windows (makes compiling possible).</li>
+<li>Include the main <tt class="docutils literal"><span class="pre">lib-tk</span></tt> in the path.</li>
+<li>Patch <tt class="docutils literal"><span class="pre">distutils.sysconfig</span></tt>: <tt class="docutils literal"><span class="pre">get_python_inc</span></tt> and
+<tt class="docutils literal"><span class="pre">get_python_lib</span></tt> to point to the global locations.</li>
+<li>Install <tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> before Setuptools, so that system
+customizations of <tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> won&#8217;t effect the installation.</li>
+<li>Add <tt class="docutils literal"><span class="pre">bin/pythonX.Y</span></tt> to the virtualenv (in addition to
+<tt class="docutils literal"><span class="pre">bin/python</span></tt>).</li>
+<li>Fixed an issue with Mac Framework Python builds, and absolute paths
+(from Ronald Oussoren).</li>
+</ul>
+</div>
+<div class="section" id="id33">
+<h2>0.9.1<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Improve ability to create a virtualenv from inside a virtualenv.</li>
+<li>Fix a little bug in <tt class="docutils literal"><span class="pre">bin/activate</span></tt>.</li>
+<li>Actually get <tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> to work reliably.</li>
+</ul>
+</div>
+<div class="section" id="id34">
+<h2>0.9<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added <tt class="docutils literal"><span class="pre">lib-dynload</span></tt> and <tt class="docutils literal"><span class="pre">config</span></tt> to things that need to be
+copied over in an environment.</li>
+<li>Copy over or symlink the <tt class="docutils literal"><span class="pre">include</span></tt> directory, so that you can
+build packages that need the C headers.</li>
+<li>Include a <tt class="docutils literal"><span class="pre">distutils</span></tt> package, so you can locally update
+<tt class="docutils literal"><span class="pre">distutils.cfg</span></tt> (in <tt class="docutils literal"><span class="pre">lib/pythonX.Y/distutils/distutils.cfg</span></tt>).</li>
+<li>Better avoid downloading Setuptools, and hitting PyPI on environment
+creation.</li>
+<li>Fix a problem creating a <tt class="docutils literal"><span class="pre">lib64/</span></tt> directory.</li>
+<li>Should work on MacOSX Framework builds (the default Python
+installations on Mac).  Thanks to Ronald Oussoren.</li>
+</ul>
+</div>
+<div class="section" id="id35">
+<h2>0.8.4<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Windows installs would sometimes give errors about <tt class="docutils literal"><span class="pre">sys.prefix</span></tt> that
+were inaccurate.</li>
+<li>Slightly prettier output.</li>
+</ul>
+</div>
+<div class="section" id="id36">
+<h2>0.8.3<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added support for Windows.</li>
+</ul>
+</div>
+<div class="section" id="id37">
+<h2>0.8.2<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Give a better warning if you are on an unsupported platform (Mac
+Framework Pythons, and Windows).</li>
+<li>Give error about running while inside a workingenv.</li>
+<li>Give better error message about Python 2.3.</li>
+</ul>
+</div>
+<div class="section" id="id38">
+<h2>0.8.1<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
+<p>Fixed packaging of the library.</p>
+</div>
+<div class="section" id="id39">
+<h2>0.8<a class="headerlink" href="#id39" title="Permalink to this headline">¶</a></h2>
+<p>Initial release.  Everything is changed and new!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Changes &amp; News</a><ul>
+<li><a class="reference internal" href="#master-unreleased">master (unreleased)</a></li>
+<li><a class="reference internal" href="#id1">1.7.1.2 (2012-02-17)</a></li>
+<li><a class="reference internal" href="#id2">1.7.1.1 (2012-02-16)</a></li>
+<li><a class="reference internal" href="#id3">1.7.1 (2012-02-16)</a></li>
+<li><a class="reference internal" href="#id4">1.7 (2011-11-30)</a></li>
+<li><a class="reference internal" href="#id5">1.6.4 (2011-07-21)</a></li>
+<li><a class="reference internal" href="#id6">1.6.3 (2011-07-16)</a></li>
+<li><a class="reference internal" href="#id7">1.6.2 (2011-07-16)</a></li>
+<li><a class="reference internal" href="#id8">1.6.1 (2011-04-30)</a></li>
+<li><a class="reference internal" href="#id9">1.6</a></li>
+<li><a class="reference internal" href="#id10">1.5.2</a></li>
+<li><a class="reference internal" href="#id11">1.5.1</a></li>
+<li><a class="reference internal" href="#id12">1.5</a></li>
+<li><a class="reference internal" href="#id13">1.4.9</a></li>
+<li><a class="reference internal" href="#id14">1.4.8</a></li>
+<li><a class="reference internal" href="#id15">1.4.7</a></li>
+<li><a class="reference internal" href="#id16">1.4.6</a></li>
+<li><a class="reference internal" href="#id17">1.4.5</a></li>
+<li><a class="reference internal" href="#id18">1.4.4</a></li>
+<li><a class="reference internal" href="#id19">1.4.3</a></li>
+<li><a class="reference internal" href="#id20">1.4.2</a></li>
+<li><a class="reference internal" href="#id21">1.4.1</a></li>
+<li><a class="reference internal" href="#id22">1.4</a></li>
+<li><a class="reference internal" href="#id23">1.3.4</a></li>
+<li><a class="reference internal" href="#id24">1.3.3</a></li>
+<li><a class="reference internal" href="#id25">1.3.2</a></li>
+<li><a class="reference internal" href="#id26">1.3.1</a></li>
+<li><a class="reference internal" href="#id27">1.3</a></li>
+<li><a class="reference internal" href="#id28">1.2</a></li>
+<li><a class="reference internal" href="#id29">1.1.1</a></li>
+<li><a class="reference internal" href="#id30">1.1</a></li>
+<li><a class="reference internal" href="#id31">1.0</a></li>
+<li><a class="reference internal" href="#id32">0.9.2</a></li>
+<li><a class="reference internal" href="#id33">0.9.1</a></li>
+<li><a class="reference internal" href="#id34">0.9</a></li>
+<li><a class="reference internal" href="#id35">0.8.4</a></li>
+<li><a class="reference internal" href="#id36">0.8.3</a></li>
+<li><a class="reference internal" href="#id37">0.8.2</a></li>
+<li><a class="reference internal" href="#id38">0.8.1</a></li>
+<li><a class="reference internal" href="#id39">0.8</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">virtualenv</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/news.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="virtualenv"
+             >previous</a> |</li>
+        <li><a href="index.html">virtualenv v1.7.1.2.post1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2007-2012, Ian Bicking, The Open Planning Project, The virtualenv developers.
+      Last updated on Apr 07, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>

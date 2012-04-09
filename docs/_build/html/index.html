@@ -1,0 +1,539 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>virtualenv &mdash; virtualenv v1.7.1.2.post1 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.7.1.2.post1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="virtualenv v1.7.1.2.post1 documentation" href="#" />
+    <link rel="next" title="Changes &amp; News" href="news.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="news.html" title="Changes &amp; News"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">virtualenv v1.7.1.2.post1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="virtualenv">
+<h1><a class="toc-backref" href="#id27">virtualenv</a><a class="headerlink" href="#virtualenv" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference external" href="http://groups.google.com/group/python-virtualenv/">讨论区</a></li>
+<li><a class="reference external" href="https://github.com/pypa/virtualenv/issues/">勘误</a></li>
+</ul>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#virtualenv" id="id27">virtualenv</a><ul>
+<li><a class="reference internal" href="#id3" id="id28">安装</a></li>
+<li><a class="reference internal" href="#id5" id="id29">用处</a><ul>
+<li><a class="reference internal" href="#id6" id="id30">环境变量和配置文件</a></li>
+<li><a class="reference internal" href="#windows" id="id31">Windows下注意事项</a></li>
+<li><a class="reference internal" href="#pypy" id="id32">PyPy支持</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8" id="id33">创建自己的启动脚本</a><ul>
+<li><a class="reference internal" href="#id9" id="id34">启动脚本范例</a></li>
+<li><a class="reference internal" href="#id11" id="id35">激活脚本</a></li>
+<li><a class="reference internal" href="#system-site-packages" id="id36"><tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> 参数</a></li>
+<li><a class="reference internal" href="#virtualenv-bin-python" id="id37">不使用Virtualenv下的 <tt class="docutils literal"><span class="pre">bin/python</span></tt></a></li>
+<li><a class="reference internal" href="#id15" id="id38">重定位隔离环境</a></li>
+<li><a class="reference internal" href="#extra-search-dir" id="id39"><tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16" id="id40">与可替代品的比较</a></li>
+<li><a class="reference internal" href="#id17" id="id41">贡献力量</a><ul>
+<li><a class="reference internal" href="#id18" id="id42">运行测试</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19" id="id43">相关文档和链接</a></li>
+<li><a class="reference internal" href="#id22" id="id44">现状和许可</a></li>
+<li><a class="reference internal" href="#wrongway" id="id45">Wrongway的补充：常用见法</a><ul>
+<li><a class="reference internal" href="#django" id="id46">1.创建隔离环境并安装最新的django</a></li>
+<li><a class="reference internal" href="#django1-3" id="id47">2.创建隔离环境并安装django1.3以及一系列开发用组件</a></li>
+<li><a class="reference internal" href="#python2-7tornado" id="id48">2.创建Python2.7隔离环境并安装tornado</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25" id="id49">Wrongway的补充：中译版致谢</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="news.html">Changes &amp; News</a></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id28">安装</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>运行 <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv</span></tt> 即可安装virtualenv，想用 <a class="reference external" href="https://github.com/pypa/virtualenv/tarball/develop#egg=virtualenv-dev">最新开发版</a>
+就运行 <tt class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">virtualenv==dev</span></tt> 。</p>
+<p>还可以用 <tt class="docutils literal"><span class="pre">easy_install</span></tt> 安装，即使是没有安装任何Python包管理器，也可以直接获取 <a class="reference external" href="https://raw.github.com/pypa/virtualenv/master/virtualenv.py">virtualenv.py</a> 并运行 <tt class="docutils literal"><span class="pre">python</span> <span class="pre">virtualenv.py</span></tt> ，效果一样。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id29">用处</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">virtualenv</span></tt> 用来创建隔离的Python环境。</p>
+<p>处理python环境的多版本和模块依赖，以及相应的权限是一个很常见的问题。比如，你有个应用使用的是LibFoo V1.0，但另一个应用却要用到LibFoo V2.0。
+如何处理呢？如果把所有模块都安装到 <tt class="docutils literal"><span class="pre">/usr/lib/python2.7/site-packages</span></tt> (或是你本机python默认的模块安装目录)，那你极有可能无意中升级一些不该升级的模块。</p>
+<p>更普遍的是，就算你成功安装了某个应用，那么接下来又会怎样？只要它开始运行了，那么只要其所依赖的模块发生任何改动，亦或升级，都可能打断该应用。</p>
+<p>这还没完，要是你无法在 <tt class="docutils literal"><span class="pre">site-packages</span></tt> 目录下安装模块呢？比如共享主机。</p>
+<p>上述这几种场合都适用 <tt class="docutils literal"><span class="pre">virtualenv</span></tt> 。它会创建一个拥有独立安装目录的python环境，该隔离环境不会与其他virtualenv环境共享模块（可选择是否访问全局库目录）。</p>
+<p>一般用法是:</p>
+<div class="highlight-python"><pre>$ python virtualenv.py ENV</pre>
+</div>
+<p>在已安装virtualenv的情况下，可以直接运行 <tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">ENV</span></tt> 。</p>
+<p>该操作会创建 <tt class="docutils literal"><span class="pre">ENV/lib/pythonX.X/site-packages</span></tt> 目录 和 <tt class="docutils literal"><span class="pre">ENV/bin/python</span></tt> ，
+前者用来存放要安装的模块，后者就是隔离环境的Python解释器。
+在virtualenv环境下使用此解释器（包括以 <tt class="docutils literal"><span class="pre">#!/path/to/ENV/bin/python</span></tt> 开头的脚本）时，使用的都是隔离环境下的模块。</p>
+<p>该操作还在隔离环境下安装了 <a class="reference external" href="http://peak.telecommunity.com/DevCenter/setuptools">Setuptools</a> 或 <a class="reference external" href="http://pypi.python.org/pypi/distribute">distribute</a> 。要用Distribue取代setuptools的话，只要运行:</p>
+<div class="highlight-python"><pre>$ python virtualenv.py --distribute ENV</pre>
+</div>
+<p>设置环境变量 VIRTUALENV_USE_DISTRIBUTE 也能达到同样目的。</p>
+<p>新的virtualenv还包含了 <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a> 包管理器，可以直接用 <tt class="docutils literal"><span class="pre">ENV/bin/pip</span></tt> 安装第三方模块。</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id30">环境变量和配置文件</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>virtualenv既可以通过命令行配置，比如 <tt class="docutils literal"><span class="pre">--distribute</span></tt> ，也可以用下面两种方式配置:</p>
+<ul>
+<li><p class="first">环境变量</p>
+<p>命令行的每个参数都以 <tt class="docutils literal"><span class="pre">VIRTUALENV_&lt;UPPER_NAME&gt;</span></tt> 的格式对应一个环境变量。
+转换变量名过程中，除了将命令行参数大写外，还要把 (<tt class="docutils literal"><span class="pre">'-'</span></tt>) 替换为 (<tt class="docutils literal"><span class="pre">'_'</span></tt>) 。</p>
+<p>举个例子，要自动安装Distribute取代默认的setuptools，可以这样设置环境变量:</p>
+<div class="highlight-python"><pre>$ export VIRTUALENV_USE_DISTRIBUTE=true
+$ python virtualenv.py ENV</pre>
+</div>
+<p>等同于在命令行直接使用参数:</p>
+<div class="highlight-python"><pre>$ python virtualenv.py --distribute ENV</pre>
+</div>
+<p>有时要重复输入多个命令行参数，比如 <tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 。变成环境变量时，要用空格隔开多个参数值，例如:</p>
+<div class="highlight-python"><pre>$ export VIRTUALENV_EXTRA_SEARCH_DIR="/path/to/dists /path/to/other/dists"
+$ virtualenv ENV</pre>
+</div>
+<p>等同于:</p>
+<div class="highlight-python"><pre>$ python virtualenv.py --extra-search-dir=/path/to/dists --extra-search-dir=/path/to/other/dists ENV</pre>
+</div>
+</li>
+<li><p class="first">配置文件</p>
+<p>virtualenv还能通过标准ini文件进行配置。在Unix和Mac OS X中是
+<tt class="docutils literal"><span class="pre">$HOME/.virtualenv/virtualenv.ini</span></tt> ，在Windows下是
+<tt class="docutils literal"><span class="pre">%HOME%\\virtualenv\\virtualenv.ini</span></tt> 。</p>
+<p>配置项名称就是命令行参数的名称。例如，参数 <tt class="docutils literal"><span class="pre">--distribute</span></tt> 在ini文件如下:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">virtualenv</span><span class="p">]</span>
+<span class="n">distribute</span> <span class="o">=</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>象 <tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 这样的多值命令行参数，在ini文件中要用断行将多个值隔开:</p>
+<div class="highlight-python"><pre>[virtualenv]
+extra-search-dir =
+    /path/to/dists
+    /path/to/other/dists</pre>
+</div>
+</li>
+</ul>
+<p><tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--help</span></tt> 可以查看完整的参数列表。</p>
+</div>
+<div class="section" id="windows">
+<h3><a class="toc-backref" href="#id31">Windows下注意事项</a><a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p>在Windows下路径会与*nix下略有不同:脚本和可执行文件在Windows下位于 <tt class="docutils literal"><span class="pre">ENV\Scripts\</span></tt> 下，而非 <tt class="docutils literal"><span class="pre">ENV/bin/</span></tt> ，
+模块也会安装在 <tt class="docutils literal"><span class="pre">ENV\Lib\</span></tt> 下，而非 <tt class="docutils literal"><span class="pre">ENV/lib/</span></tt> 。</p>
+<p>要在某个含有空格的目录下面创建virtualenv环境，就要安装 <a class="reference external" href="http://sourceforge.net/projects/pywin32/">win32api</a> 。</p>
+</div>
+<div class="section" id="pypy">
+<h3><a class="toc-backref" href="#id32">PyPy支持</a><a class="headerlink" href="#pypy" title="Permalink to this headline">¶</a></h3>
+<p>从1.5版开始，virtualenv开始支持 <a class="reference external" href="http://pypy.org">PyPy</a> 。
+&gt;=1.5版的virtualenv支持PyPy1.4和1.4.1，
+&gt;=1.6.1版的virtualenv支持PyPy1,5。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2><a class="toc-backref" href="#id33">创建自己的启动脚本</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>Wrongway提示：该段一般情况下初学者用不到，所以刚接触virtualenv的朋友不要在此节投放过多精力。Virtualenv的文档讲解顺序是有点问题。</p>
+<p>创建隔离环境时，virtualenv不会执行额外操作。但开发者有时会想在安装隔离环境后运行某个脚本。例如用脚本安装某个web应用。</p>
+<p>要创建上述脚本，需要调用
+<tt class="docutils literal"><span class="pre">virtualenv.create_bootstrap_script(extra_text)</span></tt> ，将后续操作写入到生成的启动脚本，以下是从docstring中生成的文档：</p>
+<p>启动脚本与一般脚本无异，只是多了三个extend_parser, adjust_options, after_install三个钩子方法。</p>
+<p>create_bootstrap_script返回一个可定制的，能做为启动脚本的字符串(当然，该字符串后面要写回到磁盘文件中)。
+这个字符串是一个标准的virtualenv.py脚本，用户可以自行添加内容（所加内容必须是python代码）。</p>
+<p>如果定义了下列方法，运行脚本时就会被调用:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">extend_parser(optparse_parser)</span></tt>:</dt>
+<dd>可以在解析器optparse_parser中添加或删除参数。</dd>
+<dt><tt class="docutils literal"><span class="pre">adjust_options(options,</span> <span class="pre">args)</span></tt>:</dt>
+<dd>调整options，或改变args（如果要接收各种不同的参数，一定要在最后将 <tt class="docutils literal"><span class="pre">args</span></tt> 修改为 <tt class="docutils literal"><span class="pre">[DEST_DIR]</span></tt> ）</dd>
+<dt><tt class="docutils literal"><span class="pre">after_install(options,</span> <span class="pre">home_dir)</span></tt>:</dt>
+<dd><p class="first">在所有代码和模块安装完之后，就会调用该方法。这可能是用户最喜欢的方法，例如下:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">after_install</span><span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">home_dir</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&#39;win32&#39;</span><span class="p">:</span>
+        <span class="nb">bin</span> <span class="o">=</span> <span class="s">&#39;Scripts&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">bin</span> <span class="o">=</span> <span class="s">&#39;bin&#39;</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="n">join</span><span class="p">(</span><span class="n">home_dir</span><span class="p">,</span> <span class="nb">bin</span><span class="p">,</span> <span class="s">&#39;easy_install&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;MyPackage&#39;</span><span class="p">])</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">([</span><span class="n">join</span><span class="p">(</span><span class="n">home_dir</span><span class="p">,</span> <span class="nb">bin</span><span class="p">,</span> <span class="s">&#39;my-package-script&#39;</span><span class="p">),</span>
+                     <span class="s">&#39;setup&#39;</span><span class="p">,</span> <span class="n">home_dir</span><span class="p">])</span>
+</pre></div>
+</div>
+<p class="last">上述例子会安装一个包，并运行包内的setup脚本</p>
+</dd>
+</dl>
+<p>wrongway在这里强调：上述三个方法并不是独立方法，而是一段代码字符串！！也就是extra_text的内容。有点象javascript下的
+eval(&#8216;......代码字符串......&#8217;)</p>
+<div class="section" id="id9">
+<h3><a class="toc-backref" href="#id34">启动脚本范例</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>这有个具体的例子:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">virtualenv</span><span class="o">,</span> <span class="nn">textwrap</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">virtualenv</span><span class="o">.</span><span class="n">create_bootstrap_script</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s">&quot;&quot;&quot;</span>
+<span class="s">import os, subprocess</span>
+<span class="s">def after_install(options, home_dir):</span>
+<span class="s">    etc = join(home_dir, &#39;etc&#39;)</span>
+<span class="s">    if not os.path.exists(etc):</span>
+<span class="s">        os.makedirs(etc)</span>
+<span class="s">    subprocess.call([join(home_dir, &#39;bin&#39;, &#39;easy_install&#39;),</span>
+<span class="s">                     &#39;BlogApplication&#39;])</span>
+<span class="s">    subprocess.call([join(home_dir, &#39;bin&#39;, &#39;paster&#39;),</span>
+<span class="s">                     &#39;make-config&#39;, &#39;BlogApplication&#39;,</span>
+<span class="s">                     join(etc, &#39;blog.ini&#39;)])</span>
+<span class="s">    subprocess.call([join(home_dir, &#39;bin&#39;, &#39;paster&#39;),</span>
+<span class="s">                     &#39;setup-app&#39;, join(etc, &#39;blog.ini&#39;)])</span>
+<span class="s">&quot;&quot;&quot;</span><span class="p">))</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;blog-bootstrap.py&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这还有一个例子 <a class="reference external" href="https://github.com/socialplanning/fassembler/blob/master/fassembler/create-venv-script.py">点击</a> 。</p>
+</div>
+<div class="section" id="id11">
+<h3><a class="toc-backref" href="#id35">激活脚本</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>刚创建的隔离环境下会有一个 <tt class="docutils literal"><span class="pre">bin/activate</span></tt> 命令行脚本。在Windows下，激活脚本要在CMD.exe或Powershell.exe中使用。</p>
+<p>在Posix系统(<a href="#id12"><span class="problematic" id="id13">*</span></a>nix/BSD)中，用法如下:</p>
+<div class="highlight-python"><pre>$ source bin/activate</pre>
+</div>
+<p>该操作会将当前 <tt class="docutils literal"><span class="pre">$PATH</span></tt> 指向隔离环境下的 <tt class="docutils literal"><span class="pre">bin/</span></tt> 目录。之所以要用source是因为它要改变当前shell环境。仅仅就是一行命令，就这么简单。
+如果直接运行隔离环境下的脚本或是python解释器（比如 <tt class="docutils literal"><span class="pre">path/to/env/bin/pip</span></tt> or
+<tt class="docutils literal"><span class="pre">/path/to/env/bin/python</span> <span class="pre">script.py</span></tt> ），那都没必要使用激活脚本。</p>
+<p>输入 <tt class="docutils literal"><span class="pre">deactivate</span></tt> 就能退出已激活的隔离环境，也就是取消对当前 <tt class="docutils literal"><span class="pre">$PATH</span></tt> 所做的修改。</p>
+<p><tt class="docutils literal"><span class="pre">activate</span></tt> 脚本会修改当前shell命令行提示符，以提示当前激活的是哪个隔离环境。这是挺有用的，
+不过要是想自定义的提示符，只要在运行  <tt class="docutils literal"><span class="pre">activate</span></tt>  前将 <tt class="docutils literal"><span class="pre">VIRTUAL_ENV_DISABLE_PROMPT</span></tt> 设为你想要的提示(不能为空字符串)。</p>
+<p>在Windows下只须如此（*nix用户此处就不用看了，包括下面的注意也不用看了）:</p>
+<div class="highlight-python"><pre>&gt; \path\to\env\Scripts\activate</pre>
+</div>
+<p>输入 <cite>deactivate</cite> 就能退出隔离环境。</p>
+<p>视你用的shell不同（CMD.exe或Powershell.exe），Windows会使用activate.bat或activate.ps1来激活隔离环境。
+如果使用的是Powershell，那么以下几点值得注意。</p>
+</div>
+<div class="section" id="system-site-packages">
+<h3><a class="toc-backref" href="#id36"><tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> 参数</a><a class="headerlink" href="#system-site-packages" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--system-site-packages</span> <span class="pre">ENV</span></tt> 创建的隔离环境能直接引用 <tt class="docutils literal"><span class="pre">/usr/lib/python2.7/site-packages</span></tt> (即是本机全局site-packages路径)中的模块。</p>
+<p>只在拥有全局site-packages目录的读写权限，并且你的应用要依赖其中的模块的情况下，该参数会很有用。其他情况下没必要使用该参数。</p>
+</div>
+<div class="section" id="virtualenv-bin-python">
+<h3><a class="toc-backref" href="#id37">不使用Virtualenv下的 <tt class="docutils literal"><span class="pre">bin/python</span></tt></a><a class="headerlink" href="#virtualenv-bin-python" title="Permalink to this headline">¶</a></h3>
+<p>某些情况下，我们无法或是不想使用由virtualenv创建的Python解释器。
+比如，在 <a class="reference external" href="http://www.modpython.org/">mod_python</a> 或 <a class="reference external" href="http://www.modwsgi.org/">mod_wsgi</a>
+下，只能用唯一一个Python解释器。(wrongway补充，不过uwsgi是可以使用多个python解释器的)</p>
+<p>幸运的是，这相当简单。只要用指定的Python解释器来 <em>安装</em> 应用包即可。
+但要使用这些模块，就得更正路径。有一个脚本可以用来更正路径，如下这般设置环境:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">activate_this</span> <span class="o">=</span> <span class="s">&#39;/path/to/env/bin/activate_this.py&#39;</span>
+<span class="nb">execfile</span><span class="p">(</span><span class="n">activate_this</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">__file__</span><span class="o">=</span><span class="n">activate_this</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>上述操作会更改 <tt class="docutils literal"><span class="pre">sys.path</span></tt> 和 <tt class="docutils literal"><span class="pre">sys.prefix</span></tt> ，但使用的仍是当前Python解释器。在隔离环境中
+会先寻找 <tt class="docutils literal"><span class="pre">sys.path</span></tt> 下的内容再寻找全局路径。不过全局路径始终是可以访问的（无论隔离环境是否是由 <tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> 创建的）。
+而且，上述操作不会影响其他隔离环境，也不会更正在此之前已经引用的模块。所以，在处理web请求时才激活环境往往是无效的，应该尽可能早的激活环境和更正路径，而不是在处理请求时才开始处理。</p>
+</div>
+<div class="section" id="id15">
+<h3><a class="toc-backref" href="#id38">重定位隔离环境</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>注意: &#8211;relocatable参数带有一定的实验性，可能还有一些尚未发现的问题。而且该参数也不能在Windows下使用。</p>
+<p>一般情况下，隔离环境都绑定在某个特定路径下。这也就意味着不能通过仅仅是移动或拷贝目录到另一台计算机上而迁移隔离环境。
+这时可以使用&#8211;relocatable来重定位隔离环境:</p>
+<div class="highlight-python"><pre>$ virtualenv --relocatable ENV</pre>
+</div>
+<p>该参数会根据相对路径生成某些setuptools或distribute文件，然后再运行 <tt class="docutils literal"><span class="pre">activate_this.py</span></tt> 更改所有的脚本，
+而不是通过改变python解释器软链接的指向来重置环境。</p>
+<p><strong>注意:</strong> 安装 <em>任何</em> 包之后，都要再次重定位环境。只要你将某个隔离环境迁移了，那么每安装一个新的包之后，都要再运行一遍 <tt class="docutils literal"><span class="pre">virtualenv</span> <span class="pre">--relocatable</span></tt> 。</p>
+<p>要认识到，该参数 <strong>不能做到真正的跨平台</strong> 。虽然我们可以移动相关目录，但仅仅能用于类似的计算机之间。
+一些已知的环境差异，仍会导致不兼容：</p>
+<blockquote>
+<ul class="simple">
+<li>不同版本的Python</li>
+<li>不同平台使用不同的内部编码，比如一台用UCS2,另一台用UCS4</li>
+<li>Linux和Windows</li>
+<li>Intel和ARM</li>
+<li>某些包依赖系统的C库，而C库在不同平台下有所差异(不同的版本或不同的文件系统下的所在位置)。</li>
+</ul>
+</blockquote>
+<p>使用重定位参数创建新隔离环境时，会默认使用 <tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> 参数。</p>
+</div>
+<div class="section" id="extra-search-dir">
+<h3><a class="toc-backref" href="#id39"><tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 参数</a><a class="headerlink" href="#extra-search-dir" title="Permalink to this headline">¶</a></h3>
+<p>创建新的隔离环境时，virtualenv会安装setuptools,distribute或是pip包管理器。一般情况下，
+它们都会从 <a class="reference external" href="http://pypi.python.org">Python Package Index</a> (PyPI) 中寻找并安装最新的包。但在一些特定情况下，我们并不希望如此。例如，
+你在部署virtualenv时既不想从网上下载，也不想从PyPI中获取包。</p>
+<p>做为替代方案，可以让setuptools，distribute或是pip搜寻文件系统，让virtualenv使用本地发行包而不是从网上下载。
+只要象下面这样传入一个或多个 <tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 参数就能使用该特性:</p>
+<div class="highlight-python"><pre>$ virtualenv --extra-search-dir=/path/to/distributions ENV</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">/path/to/distributions</span></tt> 路径指向某个包含setuptools/distribute/pip发行包的目录。
+Setuptools发行包必须是 <tt class="docutils literal"><span class="pre">.egg</span></tt> 文件，distribute和pip发行包则是 <cite>.tar.gz</cite> 原代码压缩包。</p>
+<p>如果本地路径没有找到相应的发布包，virtualenv还是会从网上下载。</p>
+<p>要想确保不会从网上下载任何发行包，就使用 <tt class="docutils literal"><span class="pre">--never-download</span></tt> 参数，如下:</p>
+<div class="highlight-python"><pre>$ virtualenv --extra-search-dir=/path/to/distributions --never-download ENV</pre>
+</div>
+<p>这样，virtualenv不会从网上下载任何发行包。而只搜索本地发行包，如果没有找到要安装的包，就返回状态码1。
+virtualenv会按照如下顺序搜索发行包位置:</p>
+<blockquote>
+<ol class="arabic simple">
+<li>当前目录</li>
+<li>virtualenv.py所在目录</li>
+<li>virtualenv.py所在目录下的 <tt class="docutils literal"><span class="pre">virtualenv_support</span></tt> 目录</li>
+<li>如果实际运行的脚本名并不是virtualenv.py (换句话说，就是你的自定义启动脚本
+)，会搜索实际安装的virtualenv.py所在目录下的``virtualenv_support`` 目录。</li>
+</ol>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id16">
+<h2><a class="toc-backref" href="#id40">与可替代品的比较</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<p>下面几个替代品也可以创建隔离环境:</p>
+<ul>
+<li><p class="first"><tt class="docutils literal"><span class="pre">workingenv</span></tt> (建议不考虑workingenv) 是virtualenv的前身。它使用全局环境的Python解释器，
+但要靠设置 <tt class="docutils literal"><span class="pre">$PYTHONPATH</span></tt> 来激活环境。因此在运行隔离环境以外的Python脚本时，出现很多问题
+（比如，象全局环境下的 <tt class="docutils literal"><span class="pre">hg</span></tt> 或 <tt class="docutils literal"><span class="pre">bzr</span></tt> ）。而且它与Setuptools也有很多冲突。</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://peak.telecommunity.com/DevCenter/EasyInstall#creating-a-virtual-python">virtual-python</a>
+也是virtualenv的前身。它只使用软链接，因此不能在Windows上工作。而且它的链接会覆盖
+标准模块和全局环境的 <tt class="docutils literal"><span class="pre">site-packages</span></tt> ，因此无法使用安装在全局环境下的 <tt class="docutils literal"><span class="pre">site-packages</span></tt> 的第三方模块</p>
+<p>因为virtual-python的软链接只是覆盖了全局环境下的标准模块的一部分，
+因此在windows上，可以用拷贝模块文件的方式来使用virtual-python。
+同时，它会创建一个空的 <tt class="docutils literal"><span class="pre">site-packages</span></tt> ，并把全局环境的 <tt class="docutils literal"><span class="pre">site-packages</span></tt> 指向该目录，因此更新是分别跟踪记录的（这块wrongway也不理解是什么意思，或许作者是想说要两个目录都注意要更新吧）。
+virtual-python也会自动安装Setuptools，从而省去了从网上手动安装这一步。</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://pypi.python.org/pypi/zc.buildout">zc.buildout</a> 不会以上述方式创建隔离的Python环境，
+但它通过定义配置文件，使用非常特殊的模块，配置脚本达到了相似的效果。做为一个可定义的系统，
+它是非常容易复制和管理的，但是比较难以改写。 <tt class="docutils literal"><span class="pre">zc.buildout</span></tt> 可以安装非Python的系统（比如数据库服务器或是Apache实例）</p>
+</li>
+</ul>
+<p>我 <em>强烈</em> 建议任何人开发或部署应用时都应该上述工具中的某一款</p>
+</div>
+<div class="section" id="id17">
+<h2><a class="toc-backref" href="#id41">贡献力量</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<p>参照 <a class="reference external" href="http://www.pip-installer.org/en/latest/contributing.html">contributing to pip</a> (参与PIP贡献)这篇文章，里面提及的内容同样适用于virtualenv。</p>
+<p>Virtualenv与pip同步发行，每有新的pip发布，就意味着该捆绑新版本pip的virtualenv也发布了。</p>
+<div class="section" id="id18">
+<h3><a class="toc-backref" href="#id42">运行测试</a><a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>Virtualenv 的测试案例很小，也不完整，但我们后面会完善的。</p>
+<p>运行测试的最简单方法就是(自动处理测试依赖):</p>
+<div class="highlight-python"><pre>$ python setup.py test</pre>
+</div>
+<p>可以使用nose运行测试的某一部分。创建一个virtualenv环境，然后安装必要的包:</p>
+<div class="highlight-python"><pre>$ pip install nose mock</pre>
+</div>
+<p>运行nosetests:</p>
+<div class="highlight-python"><pre>$ nosetests</pre>
+</div>
+<p>或是只测试某个文件:</p>
+<div class="highlight-python"><pre>$ nosetests tests.test_virtualenv</pre>
+</div>
+</div>
+</div>
+<div class="section" id="id19">
+<h2><a class="toc-backref" href="#id43">相关文档和链接</a><a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>James Gardner 编写了教程， <a class="reference external" href="http://wiki.pylonshq.com/display/pylonscookbook/Using+a+Virtualenv+Sandbox">在virtualenv下使用Pylons</a> 。</li>
+<li><a class="reference external" href="http://blog.ianbicking.org/2007/10/10/workingenv-is-dead-long-live-virtualenv/">博文 workingenv已死，virtualenv当立</a> 。</li>
+<li>Doug Hellmann 介绍了 <a class="reference external" href="http://www.doughellmann.com/articles/CompletelyDifferent-2008-05-virtualenvwrapper/index.html">virtualenv(virtualenvwrapper)命令行下流水线运行</a> ，
+通过几个自写的脚本，让运行多个环境变得更加容易。
+他还写了 <a class="reference external" href="http://www.doughellmann.com/articles/CompletelyDifferent-2008-02-ipython-and-virtualenv/index.html">在virtualenv下运行IPython</a> 。</li>
+<li>Chris Perkins 在showmedo创作了视频 <a class="reference external" href="http://showmedo.com/videos/video?name=2910000&amp;fromSeriesID=291">使用virtualenv</a> 。</li>
+<li><a class="reference external" href="http://code.google.com/p/modwsgi/wiki/VirtualEnvironments">在mod_wsgi下使用virtualenv</a> 。</li>
+<li><a class="reference external" href="http://thisismedium.com/tech/extending-virtualenv/">更多virtualenv周边工具</a> 。</li>
+</ul>
+</div>
+<div class="section" id="id22">
+<h2><a class="toc-backref" href="#id44">现状和许可</a><a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">virtualenv</span></tt> 是 <a class="reference external" href="http://cheeseshop.python.org/pypi/workingenv.py">workingenv</a> 的升级, 也是 <a class="reference external" href="http://peak.telecommunity.com/DevCenter/EasyInstall#creating-a-virtual-python">virtual-python</a> 的扩展。</p>
+<p><tt class="docutils literal"><span class="pre">virtualenv</span></tt> 由 Ian Bicking 编写，接受 <a class="reference external" href="http://openplans.org">Open Planning
+Project</a> 赞助，由
+<a class="reference external" href="https://github.com/pypa/virtualenv/raw/master/AUTHORS.txt">开发小组</a> 负责维护。
+该开源遵循 <a class="reference external" href="https://github.com/pypa/virtualenv/raw/master/LICENSE.txt">MIT</a> 协议。</p>
+</div>
+<div class="section" id="wrongway">
+<h2><a class="toc-backref" href="#id45">Wrongway的补充：常用见法</a><a class="headerlink" href="#wrongway" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="django">
+<h3><a class="toc-backref" href="#id46">1.创建隔离环境并安装最新的django</a><a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<p>使用当前系统默认Python解释器安装最新的django（当前是1.4），以及django用到的mysql驱动:</p>
+<div class="highlight-python"><pre>$ mkdir myproject1
+$ cd myproject1
+$ virtualenv env --no-site-packages
+$ source env/bin/active
+$(env) pip install django
+$(env) pip install mysql-python
+$(env) deactive
+$</pre>
+</div>
+</blockquote>
+</div>
+<div class="section" id="django1-3">
+<h3><a class="toc-backref" href="#id47">2.创建隔离环境并安装django1.3以及一系列开发用组件</a><a class="headerlink" href="#django1-3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<p>首先编辑一个.pip文件，假定为requirement.pip文件，将要用到的第三方模块名称写入:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Django</span><span class="o">==</span><span class="mf">1.3</span>
+<span class="n">PIL</span>
+<span class="n">South</span>
+<span class="n">sorl</span><span class="o">-</span><span class="n">thumbnail</span>
+<span class="n">pylibmc</span>
+<span class="n">mysql</span><span class="o">-</span><span class="n">python</span>
+<span class="n">django</span><span class="o">-</span><span class="n">debug</span><span class="o">-</span><span class="n">toolbar</span>
+</pre></div>
+</div>
+<p>再在命令行运行:</p>
+<div class="highlight-python"><pre>$ mkdir myproject2
+$ cd myproject2
+$ virtualenv environ --no-site-packages
+$ source environ/bin/active
+$(environ) pip install -r requirement.pip
+$(environ) deactive
+$</pre>
+</div>
+</blockquote>
+</div>
+<div class="section" id="python2-7tornado">
+<h3><a class="toc-backref" href="#id48">2.创建Python2.7隔离环境并安装tornado</a><a class="headerlink" href="#python2-7tornado" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<p>我当前环境的默认Python解析器版本是2.6，我已经安装了python2.7，现在两个python共存，但默认使用还是2.6:</p>
+<div class="highlight-python"><pre>$ mkdir myproject3
+$ cd myproject3
+$ virtualenv huanjing --no-site-packages --python=python2.7
+$ source huanjing/bin/active
+$(huanjing) pip install tornado
+$(huanjing) deactive
+$</pre>
+</div>
+<p>要注意的，python2.7应该是被已设为全局可访问的，在当前命令行输入python2.7是可运行的，否则&#8211;python就要设为python2.7解释器的完整路径。</p>
+</blockquote>
+</div>
+</div>
+<div class="section" id="id25">
+<h2><a class="toc-backref" href="#id49">Wrongway的补充：中译版致谢</a><a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<p>首先感谢我的妻，由于我受限于英文水平，本文很多生僻词语句子是由外语专业的老婆翻译和纠正的。在我译文的同时，她也在创作她的官案悬疑小说
+<a class="reference external" href="http://www.motie.com/book/9214/">《大明御史传》</a> 。</p>
+<p>同时感谢扣扣群60158309的热心pythoner，有你们的鼓励，我才重新拾起翻译。</p>
+</blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">virtualenv</a><ul>
+<li><a class="reference internal" href="#id3">安装</a></li>
+<li><a class="reference internal" href="#id5">用处</a><ul>
+<li><a class="reference internal" href="#id6">环境变量和配置文件</a></li>
+<li><a class="reference internal" href="#windows">Windows下注意事项</a></li>
+<li><a class="reference internal" href="#pypy">PyPy支持</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">创建自己的启动脚本</a><ul>
+<li><a class="reference internal" href="#id9">启动脚本范例</a></li>
+<li><a class="reference internal" href="#id11">激活脚本</a></li>
+<li><a class="reference internal" href="#system-site-packages"><tt class="docutils literal"><span class="pre">--system-site-packages</span></tt> 参数</a></li>
+<li><a class="reference internal" href="#virtualenv-bin-python">不使用Virtualenv下的 <tt class="docutils literal"><span class="pre">bin/python</span></tt></a></li>
+<li><a class="reference internal" href="#id15">重定位隔离环境</a></li>
+<li><a class="reference internal" href="#extra-search-dir"><tt class="docutils literal"><span class="pre">--extra-search-dir</span></tt> 参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id16">与可替代品的比较</a></li>
+<li><a class="reference internal" href="#id17">贡献力量</a><ul>
+<li><a class="reference internal" href="#id18">运行测试</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id19">相关文档和链接</a></li>
+<li><a class="reference internal" href="#id22">现状和许可</a></li>
+<li><a class="reference internal" href="#wrongway">Wrongway的补充：常用见法</a><ul>
+<li><a class="reference internal" href="#django">1.创建隔离环境并安装最新的django</a></li>
+<li><a class="reference internal" href="#django1-3">2.创建隔离环境并安装django1.3以及一系列开发用组件</a></li>
+<li><a class="reference internal" href="#python2-7tornado">2.创建Python2.7隔离环境并安装tornado</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id25">Wrongway的补充：中译版致谢</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="news.html"
+                        title="next chapter">Changes &amp; News</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="news.html" title="Changes &amp; News"
+             >next</a> |</li>
+        <li><a href="#">virtualenv v1.7.1.2.post1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2007-2012, Ian Bicking, The Open Planning Project, The virtualenv developers.
+      Last updated on Apr 09, 2012.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+    </div>
+  </body>
+</html>
