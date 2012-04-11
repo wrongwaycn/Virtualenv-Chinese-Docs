@@ -217,7 +217,7 @@ eval('......代码字符串......')
 视你用的shell不同（CMD.exe或Powershell.exe），Windows会使用activate.bat或activate.ps1来激活隔离环境。
 如果使用的是Powershell，那么以下几点值得注意。
 
-.. 注意(说真的，开发python还是在*nix下好，真的真的真的！)::
+注意(说真的，开发python还是在*nix下好，真的真的真的！)::
 
     使用Powershell时，运行 ``activate`` 脚本取决于`执行策略`_ 。但在Windows7下，默认情况下执行策略被设为严格，
     这就意味着象 ``activate`` 这样的脚本是不能直接运行的。但稍微设置一下即可。
