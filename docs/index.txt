@@ -58,6 +58,60 @@ virtualenv
 
 新的virtualenv还包含了 `pip <http://pypi.python.org/pypi/pip>`_ 包管理器，可以直接用 ``ENV/bin/pip`` 安装第三方模块。
 
+
+命令
+~~~~
+
+用法:: 
+
+    $ virtualenv [OPTIONS] DEST_DIR
+
+选项:
+
+  ``--version``             
+      显示当前版本号。
+
+  ``-h, --help``            
+      显示帮助信息。
+
+  ``-v, --verbose``         
+      显示详细信息。
+
+  ``-q, --quiet``           
+      不显示详细信息。
+
+  ``-p PYTHON_EXE, --python=PYTHON_EXE``
+      指定所用的python解析器的版本，比如 ``--python=python2.5`` 就使用2.5版本的解析器创建新的隔离环境。
+      默认使用的是当前系统安装(/usr/bin/python)的python解析器
+
+  ``--clear``               
+      清空非root用户的安装，并重头开始创建隔离环境。
+
+  ``--no-site-packages``    
+      令隔离环境不能访问系统全局的site-packages目录。
+
+  ``--system-site-packages``
+      令隔离环境可以访问系统全局的site-packages目录。
+
+  ``--unzip-setuptools``    
+      安装时解压Setuptools或Distribute
+
+  ``--relocatable``         
+      重定位某个已存在的隔离环境。使用该选项将修正脚本并令所有.pth文件使用相当路径。
+
+  ``--distribute``          
+      使用Distribute代替Setuptools，也可设置环境变量VIRTUALENV_DISTRIBUTE达到同样效要。
+
+  ``--extra-search-dir=SEARCH_DIRS``
+      用于查找setuptools/distribute/pip发布包的目录。可以添加任意数量的--extra-search-dir路径。
+
+  ``--never-download``      
+      禁止从网上下载任何数据。此时，如果在本地搜索发布包失败，virtualenv就会报错。
+
+  ``--prompt==PROMPT``      
+      定义隔离环境的命令行前缀。
+
+
 环境变量和配置文件
 ~~~~~~~~~~~~~~~~~~
 
@@ -193,7 +247,7 @@ eval('......代码字符串......')
 
 刚创建的隔离环境下会有一个 ``bin/activate`` 命令行脚本。在Windows下，激活脚本要在CMD.exe或Powershell.exe中使用。
 
-在Posix系统(*nix/BSD)中，用法如下::
+在Posix系统(\*nix/BSD)中，用法如下::
 
     $ source bin/activate
 
@@ -474,7 +528,7 @@ Wrongway的补充：常用见法
     $ 
 
 
-2.创建Python2.7隔离环境并安装tornado
+3.创建Python2.7隔离环境并安装tornado
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   我当前环境的默认Python解析器版本是2.6，我已经安装了python2.7，现在两个python共存，但默认使用还是2.6::
